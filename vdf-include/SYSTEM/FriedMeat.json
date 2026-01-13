@@ -1,0 +1,18 @@
+{
+    "classic": [
+        { "raw": "ITFOMUTTONRAW", "cooked": "ITFOMUTTON" }
+    ],
+    "archolos": [
+        { "raw": "ITFO_MOLERATMEAT_RAW", "cooked": "ITFO_MOLERATMEAT" },
+        { "raw": "ITFO_TROLLMEAT_RAW", "cooked": "ITFO_TROLLMEAT" },
+        { "raw": "ITAT_MEATBUGFLESH", "cooked": "ITAT_MEATBUGFLESH_FRIED" },
+        { "raw": "ITAT_RATMEATRAW", "cooked": "ITFO_ROASTEDRATMEAT" },
+        { "raw": "ITFO_BEARRAW", "cooked": "ITFO_BEAR" },
+        { "raw": "ITFO_BOAR_RAW", "cooked": "ITFO_BOAR" },
+        { "raw": "ITFO_CRABRAW", "cooked": "ITFO_CRAB" },
+        { "raw": "ITFO_SCAVENGERMEAT_RAW", "cooked": "ITFO_SCAVENGERMEAT" },
+        { "raw": "ITFO_SHADOWMEAT_RAW", "cooked": "ITFO_SHADOWMEAT" },
+        { "raw": "ITFO_SHEEP_RAW", "cooked": "ITFO_SHEEPFRIED" },
+        { "raw": "ITFO_WOLFMEAT_RAW", "cooked": "ITFO_WOLFMEAT" }
+    ]
+}

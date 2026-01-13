@@ -1,0 +1,20 @@
+﻿  FileVersion", "1.0.0.70"
+  ProductVersion", "1.0.0.70"
+  FILEVERSION 1,0,0,70
+  PRODUCTVERSION 1,0,0,70
+  ------ 
+  DllMain.cpp
+  Interface.cpp
+  ClassDeclarators_G2A.cpp
+  Globals_G2A.cpp
+  Statics_G2A.cpp
+  ClassDeclarators_G2.cpp
+  Globals_G2.cpp
+  Statics_G2.cpp
+  ClassDeclarators_G1A.cpp
+  Globals_G1A.cpp
+  Statics_G1A.cpp
+  ClassDeclarators_G1.cpp
+  Globals_G1.cpp
+  Statics_G1.cpp
+  FriedMeat.vcxproj -> C:\Users\User\Desktop\Gothic II\FriedMeat\Bin\FriedMeat.dll
