@@ -1,8 +1,7 @@
 # FriedMeat - Union Plugin [Gothic I/G1A/G2/G2NotR]
+FriedMeat is a Union plugin for Gothic I/G1A/G2/G2NotR that turns raw meat into fried meat when a monster burns after taking fire damage. The plugin detects fire effects so it works with all fire damage sources including fire spells, Uriziel sword in Gothic 1 and fire attacks from other NPCs.
 
 ![FriedMeat Screenshot](ss1.png)
-
-FriedMeat is a Union plugin for Gothic I/G1A/G2/G2NotR that turns raw meat into fried meat when a monster burns after taking fire damage. The plugin detects fire effects so it works with all fire damage sources including fire spells, Uriziel sword in Gothic 1 and fire attacks from other NPCs.
 
 ## Features
 
