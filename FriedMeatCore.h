@@ -13,12 +13,17 @@ namespace GOTHIC_ENGINE {
     class FriedMeatCore {
     public:
         static bool enabled;
+        static bool checkSpells;
         static MeatPair meatPairs[128];
         static int meatPairCount;
+        static int fireSpellIds[32];
+        static int fireSpellCount;
         static nlohmann::json jsonFile;
         
         static void Init();
         static void ReadOptions();
         static void LoadMeatConfig();
+        static void LoadFireSpells();
+        static bool IsFireSpell(unsigned long spellID);
     };
 }

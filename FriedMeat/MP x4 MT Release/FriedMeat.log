@@ -1,13 +1,13 @@
-﻿  FileVersion", "1.0.0.88"
-  ProductVersion", "1.0.0.88"
-  FILEVERSION 1,0,0,88
-  PRODUCTVERSION 1,0,0,88
+﻿  FileVersion", "1.0.0.93"
+  ProductVersion", "1.0.0.93"
+  FILEVERSION 1,0,0,93
+  PRODUCTVERSION 1,0,0,93
   ------ 
   Interface.cpp
-     Trwa tworzenie biblioteki C:\Users\User\Desktop\Gothic II\FriedMeat\Bin\FriedMeat.lib i obiektu C:\Users\User\Desktop\Gothic II\FriedMeat\Bin\FriedMeat.exp
+     Trwa tworzenie biblioteki C:\Users\User\Desktop\Gothic II\FriedMeat-Union\Bin\FriedMeat.lib i obiektu C:\Users\User\Desktop\Gothic II\FriedMeat-Union\Bin\FriedMeat.exp
   Trwa generowanie kodu
-  277 of 1922 functions (14.4%) were compiled, the rest were copied from previous compilation.
-    13 functions were new in current compilation
-    58 functions had inline decision re-evaluated but remain unchanged
+  503 of 1960 functions (25.7%) were compiled, the rest were copied from previous compilation.
+    38 functions were new in current compilation
+    23 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
-  FriedMeat.vcxproj -> C:\Users\User\Desktop\Gothic II\FriedMeat\Bin\FriedMeat.dll
+  FriedMeat.vcxproj -> C:\Users\User\Desktop\Gothic II\FriedMeat-Union\Bin\FriedMeat.dll

@@ -33,30 +33,58 @@ FriedMeat is a Union plugin for Gothic I/G1A/G2/G2NotR that turns raw meat into 
 1. Launch the game
 2. Go to Main Menu → Options → Union
 3. Find "FriedMeat" in the list
-4. Toggle the plugin on/off and access the project page
+4. Configure options:
+   - **Enabled**: Toggle the plugin on/off
+   - **CheckSpells**: Enable if fire spells don't ignite enemies (for mods like Archolos where some creatures don't burn)
+
+### Configuration Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `Enabled` | Enable/disable the entire plugin | On |
+| `CheckSpells` | Also check for fire spell damage (configurable in JSON) | Off |
 
 ### Through JSON Configuration File
 
-The plugin uses `SYSTEM/FriedMeat.json` to define meat conversion pairs:
+The plugin uses `SYSTEM/FriedMeat.json` to define meat conversion pairs and fire spells:
 
 ```json
 {
-    "classic": [
-        { "raw": "ITFOMUTTONRAW", "cooked": "ITFOMUTTON" }
-    ],
-    "archolos": [
-        { "raw": "ITFO_MOLERATMEAT_RAW", "cooked": "ITFO_MOLERATMEAT" },
-        { "raw": "ITFO_TROLLMEAT_RAW", "cooked": "ITFO_TROLLMEAT" },
-        { "raw": "ITAT_MEATBUGFLESH", "cooked": "ITAT_MEATBUGFLESH_FRIED" },
-        { "raw": "ITAT_RATMEATRAW", "cooked": "ITFO_ROASTEDRATMEAT" },
-        { "raw": "ITFO_BEARRAW", "cooked": "ITFO_BEAR" },
-        { "raw": "ITFO_BOAR_RAW", "cooked": "ITFO_BOAR" },
-        { "raw": "ITFO_CRABRAW", "cooked": "ITFO_CRAB" },
-        { "raw": "ITFO_SCAVENGERMEAT_RAW", "cooked": "ITFO_SCAVENGERMEAT" },
-        { "raw": "ITFO_SHADOWMEAT_RAW", "cooked": "ITFO_SHADOWMEAT" },
-        { "raw": "ITFO_SHEEP_RAW", "cooked": "ITFO_SHEEPFRIED" },
-        { "raw": "ITFO_WOLFMEAT_RAW", "cooked": "ITFO_WOLFMEAT" }
-    ]
+    "fireSpells": {
+        "gothic1": [
+            { "id": 13, "name": "SPL_PYROKINESIS" },
+            { "id": 17, "name": "SPL_FIREBOLT" },
+            { "id": 18, "name": "SPL_FIRESTORM" },
+            { "id": 19, "name": "SPL_FIRERAIN" }
+        ],
+        "gothic2": [
+            { "id": 19, "name": "SPL_FIREBOLT" },
+            { "id": 23, "name": "SPL_INSTANTFIREBALL" },
+            { "id": 30, "name": "SPL_CHARGEFIREBALL" },
+            { "id": 37, "name": "SPL_PYROKINESIS" },
+            { "id": 38, "name": "SPL_FIRESTORM" },
+            { "id": 42, "name": "SPL_FIRERAIN" },
+            { "id": 100, "name": "SPL_FIREWAVE", "mod": "archolos" }
+        ]
+    },
+    "meatPairs": {
+        "classic": [
+            { "raw": "ITFOMUTTONRAW", "cooked": "ITFOMUTTON" }
+        ],
+        "archolos": [
+            { "raw": "ITFO_MOLERATMEAT_RAW", "cooked": "ITFO_MOLERATMEAT" },
+            { "raw": "ITFO_TROLLMEAT_RAW", "cooked": "ITFO_TROLLMEAT" },
+            { "raw": "ITAT_MEATBUGFLESH", "cooked": "ITAT_MEATBUGFLESH_FRIED" },
+            { "raw": "ITAT_RATMEATRAW", "cooked": "ITFO_ROASTEDRATMEAT" },
+            { "raw": "ITFO_BEARRAW", "cooked": "ITFO_BEAR" },
+            { "raw": "ITFO_BOAR_RAW", "cooked": "ITFO_BOAR" },
+            { "raw": "ITFO_CRABRAW", "cooked": "ITFO_CRAB" },
+            { "raw": "ITFO_SCAVENGERMEAT_RAW", "cooked": "ITFO_SCAVENGERMEAT" },
+            { "raw": "ITFO_SHADOWMEAT_RAW", "cooked": "ITFO_SHADOWMEAT" },
+            { "raw": "ITFO_SHEEP_RAW", "cooked": "ITFO_SHEEPFRIED" },
+            { "raw": "ITFO_WOLFMEAT_RAW", "cooked": "ITFO_WOLFMEAT" }
+        ]
+    }
 }
 ```
 
@@ -65,22 +93,39 @@ The plugin uses `SYSTEM/FriedMeat.json` to define meat conversion pairs:
 To add support for new mods or custom meat types:
 
 1. Open `SYSTEM/FriedMeat.json` in a text editor
-2. Add a new category or extend existing ones:
+2. Add a new category in `meatPairs` section:
 ```json
 {
-    "classic": [...],
-    "archolos": [...],
-    "your_mod": [
-        { "raw": "CUSTOM_RAW_MEAT", "cooked": "CUSTOM_COOKED_MEAT" }
-    ]
+    "fireSpells": { ... },
+    "meatPairs": {
+        "classic": [...],
+        "archolos": [...],
+        "your_mod": [
+            { "raw": "CUSTOM_RAW_MEAT", "cooked": "CUSTOM_COOKED_MEAT" }
+        ]
+    }
 }
 ```
 3. Save the file and restart the game
 
-### Configuration Limits
-- **Maximum Meat Pairs**: 128 pairs total across all categories
-- **Name Length**: Raw and cooked meat names limited to 63 characters each
-- **Categories**: Unlimited number of mod categories supported
+### Adding Custom Fire Spells
+
+If your mod adds new fire spells, you can add them to the `fireSpells` section:
+
+1. Find the spell ID in your mod's scripts (look for `SPL_` constants)
+2. Add to the appropriate engine section (`gothic1` or `gothic2`):
+```json
+{
+    "fireSpells": {
+        "gothic2": [
+            { "id": 19, "name": "SPL_FIREBOLT" },
+            { "id": 100, "name": "SPL_FIREWAVE", "mod": "archolos" },
+            { "id": 101, "name": "SPL_CUSTOM_FIRE", "mod": "your_mod" }
+        ]
+    }
+}
+```
+3. The `"mod"` field is optional and for now serves as documentation only
 
 ## Supported Games and Mods
 
@@ -134,7 +179,7 @@ MIT License
 - Ensure creatures are dying from fire damage (look for fire visual effects)
 - Check that the raw meat names in JSON match your game/mod exactly
 - Confirm the creature is not human (plugin only affects animals/monsters)
-- **Archolos Note**: Trolls and Molerats don't catch fire from certain spells - hopefully this will be fixed in Archolos 2.0
+- **Archolos Note**: Some creatures like Trolls and Molerats don't catch fire from certain spells. Enable the **CheckSpells** option in Union menu to also detect fire spell damage directly.
 
 ### JSON Configuration Issues
 - Validate JSON syntax using an online JSON validator
@@ -157,6 +202,12 @@ This is a community project. Feel free to:
 - Discord: raster96
 
 ## Version History
+
+- **v1.0.1** 
+  - CheckSpells option & JSON fire spells
+  - Added CheckSpells option for mods where fire spells don't trigger burn effects
+  - Fire spell IDs now configurable in JSON (separate for Gothic 1 and Gothic 2)
+  - Easy to add custom fire spells for mods
 
 - **v1.0.0** - Initial release
   - Fire damage detection system

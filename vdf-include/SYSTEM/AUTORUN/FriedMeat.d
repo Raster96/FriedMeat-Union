@@ -174,6 +174,38 @@ instance MenuItem_Opt_FriedMeat_Enabled_Choice(C_MENU_ITEM_DEF)
   );
 };
 
+// ------ CheckSpells ------
+instance MenuItem_Opt_FriedMeat_CheckSpells(C_MENU_ITEM)
+{
+  CurrentMenuItem_PY = 2;
+  C_MENU_ITEM_TEXT_BASE();
+  fontname = FontSmall;
+  posy += Menu_DY * CurrentMenuItem_PY + Text_DY;
+  
+  text[0] = "CheckSpells";
+  text[1] = Str_GetLocalizedString(
+    "Включить, если огненные заклинания не поджигают врагов",
+    "Enable if fire spells don't ignite enemies",
+    "Aktivieren, wenn Feuerzauber Feinde nicht entzünden",
+    "Włącz jeśli ogniste czary nie podpalają wrogów"
+  );
+};
+
+instance MenuItem_Opt_FriedMeat_CheckSpells_Choice(C_MENU_ITEM_DEF)
+{
+  C_MENUITEM_CHOICE_BASE();
+  posy += Menu_DY * CurrentMenuItem_PY;
+  
+  onchgsetoption        = "CheckSpells";
+  onchgsetoptionsection = "FRIED_MEAT";
+  text[0]               = Str_GetLocalizedString(
+    "Выкл.|Вкл.",
+    "Off|On",
+    "Aus|Ein",
+    "Wył.|Wł."
+  );
+};
+
 // ------ Open Project Page ------
 instance MenuItem_Opt_FriedMeat_Open_Link(C_MENU_ITEM)
 {

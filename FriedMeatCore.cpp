@@ -4,18 +4,64 @@
 namespace GOTHIC_ENGINE {
     
     bool FriedMeatCore::enabled = true;
+    bool FriedMeatCore::checkSpells = false;
     MeatPair FriedMeatCore::meatPairs[128] = {};
     int FriedMeatCore::meatPairCount = 0;
+    int FriedMeatCore::fireSpellIds[32] = {};
+    int FriedMeatCore::fireSpellCount = 0;
     nlohmann::json FriedMeatCore::jsonFile;
 
     void FriedMeatCore::Init() {
         ReadOptions();
         LoadMeatConfig();
+        LoadFireSpells();
     }
 
     void FriedMeatCore::ReadOptions() {
         if (!zoptions) return;
         enabled = zoptions->ReadBool("FRIED_MEAT", "Enabled", true);
+        checkSpells = zoptions->ReadBool("FRIED_MEAT", "CheckSpells", false);
+    }
+
+    bool FriedMeatCore::IsFireSpell(unsigned long spellID) {
+        if (spellID == 0) return false;
+        
+        for (int i = 0; i < fireSpellCount; i++) {
+            if (fireSpellIds[i] == (int)spellID) return true;
+        }
+        return false;
+    }
+
+    void FriedMeatCore::LoadFireSpells() {
+        fireSpellCount = 0;
+        
+        if (jsonFile.is_null()) return;
+        
+        try {
+            if (!jsonFile.contains("fireSpells")) return;
+            
+#if ENGINE == Engine_G1 || ENGINE == Engine_G1A
+            const char* spellKey = "gothic1";
+#else
+            const char* spellKey = "gothic2";
+#endif
+            
+            if (!jsonFile["fireSpells"].contains(spellKey)) return;
+            
+            auto& spells = jsonFile["fireSpells"][spellKey];
+            if (!spells.is_array()) return;
+            
+            for (auto& spell : spells) {
+                if (fireSpellCount >= 32) break;
+                
+                if (!spell.contains("id") || !spell["id"].is_number_integer()) continue;
+                
+                fireSpellIds[fireSpellCount] = spell["id"].get<int>();
+                fireSpellCount++;
+            }
+        }
+        catch (...) {
+        }
     }
 
     void FriedMeatCore::LoadMeatConfig() {
@@ -43,7 +89,9 @@ namespace GOTHIC_ENGINE {
         try {
             jsonFile = nlohmann::json::parse(buffer.ToChar());
             
-            for (auto& category : jsonFile.items()) {
+            if (!jsonFile.contains("meatPairs")) return;
+            
+            for (auto& category : jsonFile["meatPairs"].items()) {
                 if (!category.value().is_array()) continue;
                 
                 for (auto& pair : category.value()) {

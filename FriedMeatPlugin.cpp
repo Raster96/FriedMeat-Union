@@ -64,6 +64,7 @@ namespace GOTHIC_ENGINE {
         if (IsWorldReady() && FriedMeatCore::enabled) {
             bool isFireDamage = false;
             
+            // Check fire visual effects
             if (desc.pVisualFX) {
                 zSTRING fxName = desc.pVisualFX->visName_S;
                 if (IsFireEffect(fxName)) {
@@ -74,6 +75,13 @@ namespace GOTHIC_ENGINE {
             if (desc.pFXHit) {
                 zSTRING fxName = desc.pFXHit->visName_S;
                 if (IsFireEffect(fxName)) {
+                    isFireDamage = true;
+                }
+            }
+            
+            // Check fire spells if enabled (for mods where fire spells don't trigger burn effects)
+            if (!isFireDamage && FriedMeatCore::checkSpells) {
+                if (FriedMeatCore::IsFireSpell(desc.nSpellID)) {
                     isFireDamage = true;
                 }
             }
