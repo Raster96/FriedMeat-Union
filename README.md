@@ -42,7 +42,7 @@ FriedMeat is a Union plugin for Gothic I/G1A/G2/G2NotR that turns raw meat into 
 | Option | Description | Default |
 |--------|-------------|---------|
 | `Enabled` | Enable/disable the entire plugin | On |
-| `CheckSpells` | Also check for fire spell damage (configurable in JSON) | Off |
+| `CheckSpells` | Also check for fire spell damage (configurable in JSON) | On |
 
 ### Through JSON Configuration File
 

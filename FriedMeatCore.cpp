@@ -4,7 +4,7 @@
 namespace GOTHIC_ENGINE {
     
     bool FriedMeatCore::enabled = true;
-    bool FriedMeatCore::checkSpells = false;
+    bool FriedMeatCore::checkSpells = true;
     MeatPair FriedMeatCore::meatPairs[128] = {};
     int FriedMeatCore::meatPairCount = 0;
     int FriedMeatCore::fireSpellIds[32] = {};
@@ -20,7 +20,7 @@ namespace GOTHIC_ENGINE {
     void FriedMeatCore::ReadOptions() {
         if (!zoptions) return;
         enabled = zoptions->ReadBool("FRIED_MEAT", "Enabled", true);
-        checkSpells = zoptions->ReadBool("FRIED_MEAT", "CheckSpells", false);
+        checkSpells = zoptions->ReadBool("FRIED_MEAT", "CheckSpells", true);
     }
 
     bool FriedMeatCore::IsFireSpell(unsigned long spellID) {

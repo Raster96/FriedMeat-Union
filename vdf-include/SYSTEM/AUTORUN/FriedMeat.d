@@ -184,10 +184,10 @@ instance MenuItem_Opt_FriedMeat_CheckSpells(C_MENU_ITEM)
   
   text[0] = "CheckSpells";
   text[1] = Str_GetLocalizedString(
-    "Включить, если огненные заклинания не поджигают врагов",
-    "Enable if fire spells don't ignite enemies",
-    "Aktivieren, wenn Feuerzauber Feinde nicht entzünden",
-    "Włącz jeśli ogniste czary nie podpalają wrogów"
+    "Отключить, чтобы проверять только эффект горения NPC",
+    "Disable to check only NPC burn effect",
+    "Deaktivieren, um nur den Brenneffekt von NPCs zu prüfen",
+    "Wyłącz aby sprawdzać tylko efekt podpalenia NPC"
   );
 };
 
